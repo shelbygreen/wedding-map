@@ -23,7 +23,7 @@ export const layers = [
       type: 'circle',
       paint: {
         'circle-color': 'orange',
-        'circle-outline-color': 'white'
+        // 'circle-outline-color': 'white'
       },
       layout: {
         visibility: 'visible',

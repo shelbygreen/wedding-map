@@ -1,6 +1,7 @@
 // import modules
 import React, { useEffect, useRef } from 'react'
 import mapboxgl from 'mapbox-gl'
+import { fromJS } from 'immutable'
 import { siteMetadata } from '../../../gatsby-config'
 import { sources, layers } from '../../../config/map'
 import styled from '../../../util/style'
@@ -9,6 +10,30 @@ import styled from '../../../util/style'
 const Wrapper = styled.div`
     height: 100%;
 `
+
+const MapContainer = styled.div`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; 
+`
+const Sidebar = styled.div`
+    position: absolute;
+    overflow-y: auto;
+    height: 200px;
+    top: calc(47px + 30px);
+    z-index: 4000;
+    background-color: #fff;
+    width: 340px;
+    padding: 10px;
+    border-radius: 0;
+    color: #29323c;
+    right: 30px;
+    margin: auto;
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 1px 1px rgba(16, 22, 26, 0.2), 0 2px 6px rgba(16, 22, 26, 0.2);
+`
+
 
 // mapbox token
 const mapboxToken = siteMetadata.mapboxToken
@@ -31,9 +56,9 @@ const Map = () => {
         mapboxgl.accessToken = siteMetadata.mapboxToken
         const map = new mapboxgl.Map({
             container: mapContainer.current,
-            style: `mapbox://styles/shelby-green/ckpe45kll0we417n7cgs8cxne`,
+            style: `mapbox://styles/mapbox/light-v10`,
             center: [-84.28, 30.44],
-            zoom: 8, 
+            zoom: 11, 
             minZoom: 2
         })
 
@@ -67,7 +92,13 @@ const Map = () => {
                 layers: ['places-fill']
             })
 
-            const html = ``; 
+            const html = `
+            <b>Location:</b> ${features[0].properties.Location}
+            <br/>
+            <b>Address:</b> ${features[0].properties.Address}
+            <b>Time:</b> ${features[0].properties.Time}
+            
+            `;
 
             // create tooltip variable for the floating card div
             const tooltip = document.getElementById('floating-card')
@@ -107,7 +138,21 @@ const Map = () => {
         <MapContainer ref={mapContainer} style={{ width: '100%', height: '100%' }}/>
         <Sidebar>
             <div id="floating-card">
-                <b>Places Details</b>
+                <b>Itinerary</b>
+                <br/>
+                <b>Friday</b>
+                <p>3pm, Marriage at the Leon County Courthouse</p>
+                <p>4pm, Bike Ride</p>
+                <p>6pm, Dinner at Andrew's Downtown</p>
+                <p>8pm, Games and Dessert at the Newlyweds' house</p>
+                <b>Saturday</b>
+                <p>10am, Tubing at Bear Paw</p>
+                <p>5pm, Bowling at Capital Lanes</p>
+                <p>8pm, Dinner at Food Glorious Food</p>
+                <b>Sunday</b>
+                <p>7am, Hike at Piney Z</p>
+                <p>11am, Brunch at Table 23</p>
+
             </div>
             </Sidebar>
     </Wrapper>

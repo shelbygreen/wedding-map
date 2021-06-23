@@ -1,2 +1,4 @@
 *map/node_modules
 *map/package-lock.json
+commands.txt
+*map/.cache
