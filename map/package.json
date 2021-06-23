@@ -1,0 +1,23 @@
+{
+  "name": "wedding-map",
+  "version": "1.0.0",
+  "description": "a visual itinerary for our wedding activities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "wedding-map"
+  },
+  "author": "Shelby Green",
+  "license": "ISC",
+  "dependencies": {
+    "@styled-system/theme-get": "^5.1.2",
+    "gatsby": "^3.8.0",
+    "mapbox-gl": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.0"
+  }
+}
